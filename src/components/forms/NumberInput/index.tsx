@@ -51,7 +51,7 @@ export function NumberInput({ value, onChange, label }: NumberInputProps) {
   };
 
   return (
-    <Flex direction="column" gap="size-100">
+    <Flex direction="column" gap="size-100" height="100%">
       <TextField
         label={`${label}`}
         type="text"
