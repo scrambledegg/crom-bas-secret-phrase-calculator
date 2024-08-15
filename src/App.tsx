@@ -103,7 +103,7 @@ export function App() {
               }}
               maxWidth={{
                 base: 'size-3600',
-                L: 'auto',
+                L: 'initial',
               }}
             >
               <Flex
