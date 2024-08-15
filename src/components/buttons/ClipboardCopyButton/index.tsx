@@ -16,7 +16,12 @@ export function ClipboardCopyButton({
   onPress,
 }: ClipboardCopyButtonProps) {
   return (
-    <Button onPress={onPress} variant="primary" isDisabled={isDisabled}>
+    <Button
+      onPress={onPress}
+      variant="primary"
+      isDisabled={isDisabled}
+      aria-label="copy"
+    >
       {isCopied ? (
         <>
           <Checkmark />
