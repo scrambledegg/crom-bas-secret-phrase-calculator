@@ -6,6 +6,7 @@ import licensePlugin from 'rollup-plugin-license';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: 'crom-bas-secret-phrase-calculator',
   plugins: [
     react(),
     vanillaExtractPlugin(),
