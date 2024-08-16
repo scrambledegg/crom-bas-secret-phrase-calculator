@@ -7,24 +7,9 @@ import {
   View,
   defaultTheme,
 } from '@adobe/react-spectrum';
-import {
-  KeywordSelector,
-  NumberInput,
-  Operator,
-  OperatorInput,
-  AppFooter,
-} from './components';
+import { KEYWORDS } from './constants';
+import { NumberInput, Operator, OperatorInput, AppFooter } from './components';
 import { CopyableOutput } from './components/forms/CopyableOutput';
-
-const KEYWORDS = [
-  'インボリック',
-  'サーオィン',
-  'バス',
-  'ベルテン',
-  'ルーナサ',
-] as const;
-
-type Keyword = (typeof KEYWORDS)[number];
 
 function isNumberArray(
   maybeNumber: (number | undefined)[],
@@ -59,9 +44,8 @@ export function App() {
     [number | undefined, number | undefined, number | undefined]
   >([undefined, undefined, undefined]);
   const [operators, setOperators] = useState<[Operator, Operator]>(['+', '+']);
-  const [keyword, setKeyword] = useState<Keyword>('インボリック');
 
-  const answer = useMemo(() => {
+  const calculationResult = useMemo(() => {
     let calculatedResult: number | undefined;
     if (['*'].includes(operators[1])) {
       calculatedResult = applyOperator(operators[0], [
@@ -75,12 +59,8 @@ export function App() {
       ]);
     }
 
-    if (calculatedResult === undefined) {
-      return undefined;
-    }
-
-    return `${calculatedResult}${keyword}`;
-  }, [numbers, keyword, operators]);
+    return calculatedResult;
+  }, [numbers, operators]);
 
   return (
     <Provider
@@ -199,24 +179,26 @@ export function App() {
                 </View>
               </Flex>
 
-              <KeywordSelector
-                label="Keyword"
-                value={keyword}
-                onSelectionChange={setKeyword}
-                keywords={KEYWORDS}
-              />
-
               <View>
-                <Heading level={2}>解答</Heading>
-                <CopyableOutput
-                  value={answer}
-                  inputMaxWidth={'size-3000'}
-                  isTextHidden={{
-                    base: true,
-                    L: false,
-                  }}
-                  ariaLabel="answer"
-                />
+                <Heading level={2}>フレーズ候補</Heading>
+                <Flex direction="column" gap="size-100">
+                  {KEYWORDS.map((keyword) => (
+                    <CopyableOutput
+                      key={keyword}
+                      value={
+                        calculationResult
+                          ? `${calculationResult}${keyword}`
+                          : undefined
+                      }
+                      inputMaxWidth={'size-3000'}
+                      isTextHidden={{
+                        base: true,
+                        L: false,
+                      }}
+                      ariaLabel={`phrase-candidate-${keyword}`}
+                    />
+                  ))}
+                </Flex>
               </View>
             </Flex>
 
