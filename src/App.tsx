@@ -8,8 +8,13 @@ import {
   defaultTheme,
 } from '@adobe/react-spectrum';
 import { KEYWORDS } from './constants';
-import { NumberInput, Operator, OperatorInput, AppFooter } from './components';
-import { CopyableOutput } from './components/forms/CopyableOutput';
+import {
+  AppFooter,
+  CopyableOutput,
+  NumberInput,
+  Operator,
+  OperatorInput,
+} from './components';
 
 function isNumberArray(
   maybeNumber: (number | undefined)[],
