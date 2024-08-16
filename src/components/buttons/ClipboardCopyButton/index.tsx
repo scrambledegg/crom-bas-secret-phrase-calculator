@@ -18,7 +18,7 @@ export function ClipboardCopyButton({
   return (
     <Button
       onPress={onPress}
-      variant="primary"
+      variant="secondary"
       isDisabled={isDisabled}
       aria-label="copy"
     >
