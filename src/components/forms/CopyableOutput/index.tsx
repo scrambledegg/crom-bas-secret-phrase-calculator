@@ -12,6 +12,7 @@ export interface CopyableOutputProps {
   copyNotificationTimeout?: number;
   inputMaxWidth?: SpectrumTextFieldProps['width'];
   isTextHidden?: TextProps['isHidden'];
+  isDisabled?: boolean;
   ariaLabel?: string;
   onCopy?: () => void;
 }
@@ -20,6 +21,7 @@ export function CopyableOutput({
   copyNotificationTimeout = 1000,
   inputMaxWidth,
   isTextHidden,
+  isDisabled,
   ariaLabel,
   onCopy,
 }: CopyableOutputProps) {
@@ -55,11 +57,12 @@ export function CopyableOutput({
         maxWidth={inputMaxWidth}
         aria-label={ariaLabel}
         flex={1}
+        isDisabled={isDisabled}
       />
       <ClipboardCopyButton
         onPress={copyToClipboard}
         isCopied={copied}
-        isDisabled={!value}
+        isDisabled={isDisabled ?? !value}
         isTextHidden={isTextHidden}
       />
     </Flex>
