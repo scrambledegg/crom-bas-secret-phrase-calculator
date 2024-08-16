@@ -11,7 +11,7 @@ describe('App', () => {
       ${[0, undefined, 0]} | ${['+', '+']}
       ${[0, 0, undefined]} | ${['+', '+']}
     `(
-      'when a expr is `$numbers.0 $operators.0 $numbers.1 $operators.1 $numbers.2`, phrase candidates should be empty',
+      'when a expr is `$numbers.0 $operators.0 $numbers.1 $operators.1 $numbers.2`, phrase candidates should be an dummy phrase',
       async ({ numbers, operators }) => {
         const user = userEvent.setup();
         render(<App />);
@@ -38,7 +38,7 @@ describe('App', () => {
             screen.getByRole('textbox', {
               name: `phrase-candidate-${keyword}`,
             }),
-          ).toHaveValue('');
+          ).toHaveValue(`計算結果 + ${keyword}`);
         }
       },
     );

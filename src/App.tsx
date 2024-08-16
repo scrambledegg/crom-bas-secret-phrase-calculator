@@ -193,7 +193,7 @@ export function App() {
                       value={
                         calculationResult
                           ? `${calculationResult}${keyword}`
-                          : undefined
+                          : `計算結果 + ${keyword}`
                       }
                       inputMaxWidth={'size-3000'}
                       isTextHidden={{
