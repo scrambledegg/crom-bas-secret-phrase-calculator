@@ -23,25 +23,22 @@ function isNumberArray(
 }
 
 function applyOperator(operator: Operator, operands: (number | undefined)[]) {
-  if (!isNumberArray(operands)) {
+  if (!isNumberArray(operands) || operands.length < 1) {
     return undefined;
   }
-  return operands.reduce(
-    (accum, curr) => {
-      switch (operator) {
-        case '+':
-          return accum + curr;
-        case '-':
-          return accum - curr;
-        case '*':
-          return accum * curr;
-        default:
-          operator satisfies never;
-          throw new Error('無効なOperator');
-      }
-    },
-    ['+', '-'].includes(operator) ? 0 : 1,
-  );
+  return operands.slice(1).reduce((accum, curr) => {
+    switch (operator) {
+      case '+':
+        return accum + curr;
+      case '-':
+        return accum - curr;
+      case '*':
+        return accum * curr;
+      default:
+        operator satisfies never;
+        throw new Error('無効なOperator');
+    }
+  }, operands[0]);
 }
 
 export function App() {
