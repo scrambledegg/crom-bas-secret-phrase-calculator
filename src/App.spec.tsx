@@ -53,6 +53,7 @@ describe('App', () => {
       ${[0, 1, 2]} | ${['-', '*']} | ${'-2'}
       ${[0, 1, 2]} | ${['*', '+']} | ${'2'}
       ${[0, 1, 2]} | ${['*', '-']} | ${'-2'}
+      ${[0, 1, 2]} | ${['*', '*']} | ${'0'}
     `(
       'when a expr is `$numbers.0 $operators.0 $numbers.1 $operators.1 $numbers.2`, phrase candidates should be has `$calcResult` as a prefix',
       async ({ numbers, operators, calcResult }) => {

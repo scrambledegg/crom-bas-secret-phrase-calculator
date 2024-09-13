@@ -188,7 +188,7 @@ export function App() {
                     <CopyableOutput
                       key={keyword}
                       value={
-                        calculationResult
+                        calculationResult !== undefined
                           ? `${calculationResult}${keyword}`
                           : `計算結果 + ${keyword}`
                       }
